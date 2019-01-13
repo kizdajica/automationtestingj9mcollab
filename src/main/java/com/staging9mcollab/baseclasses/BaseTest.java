@@ -3,6 +3,10 @@ package com.staging9mcollab.baseclasses;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.IOException;
+
+import static com.staging9mcollab.helpers.PropertyReader.getProperty;
+
 /**
  * This is the Base Test class that manipulates with the driver
  *
@@ -14,11 +18,11 @@ public class BaseTest {
     /**
      * This method initializes the driver and navigates to AUT
      */
-    public void setUp() {
+    public void setUp() throws IOException {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/driver/chromeDriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://automationtesting.staging-9mcollab.com");
+        driver.get(getProperty("url"));
     }
 
     /**

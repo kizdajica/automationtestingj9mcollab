@@ -5,6 +5,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class TopicPage {
+    private static final String topicName = "654Group456";
+    private static final String subtopicName = "Subtopic";
+
+    @FindBy(how = How.XPATH, using = "//div[@id='topics']/div/div/div/div[2]/div/button")
+    public WebElement createSubtopicButton;
+
     @FindBy(how = How.XPATH, using = "//span[text()='Create Conclusion']/ancestor::button[@type='button']")
     public WebElement createConclusionButton;
 
@@ -31,6 +37,22 @@ public class TopicPage {
 
     @FindBy(how = How.CSS, using = ".ladda-button")
     public WebElement proposeButton;
+
+    @FindBy(how = How.XPATH, using = "//div[text()=' " + topicName + "']/ancestor::div[@class='center']")
+    public WebElement mainTopic;
+
+    @FindBy(how = How.XPATH, using = "//textarea[@placeholder='Type a message...']")
+    public WebElement messageTextArea;
+
+    @FindBy(how = How.XPATH, using = "//button[@ng-click='vm.sendMessage()']")
+    public WebElement sendMessageButton;
+
+    @FindBy(how = How.XPATH, using = "//div[text()=' " + subtopicName + "']/ancestor::div[@class='center']")
+    public WebElement subtopic;
+
+    public void clickCreateSubtopic() {
+        createSubtopicButton.click();
+    }
 
     public void clickCreateConclusion() {
         createConclusionButton.click();
@@ -68,5 +90,26 @@ public class TopicPage {
     public void selectVotingType() {
         clickVotingType();
         selectConsensus();
+    }
+
+    public void selectMainTopic() {
+        mainTopic.click();
+    }
+
+    public void enterMessageText(String message) {
+        messageTextArea.sendKeys(message);
+    }
+
+    public void clickSendMessage() {
+        sendMessageButton.click();
+    }
+
+    public void sendMessage(String message) {
+        enterMessageText(message);
+        clickSendMessage();
+    }
+
+    public void selectSubtopic() {
+        subtopic.click();
     }
 }

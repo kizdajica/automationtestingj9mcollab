@@ -5,7 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class MyGroupsPage {
-    @FindBy(how = How.XPATH, using = "//span[text()='654Group989']/ancestor::td[@class='name']")
+    private static final String topicName = "654Group456";
+
+    @FindBy(how = How.XPATH, using = "//span[text()='" + topicName + "']/ancestor::td[@class='name']")
     public WebElement existingTopicName;
 
     public void clickExistingTopic() {

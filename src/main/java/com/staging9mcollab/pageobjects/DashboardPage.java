@@ -10,10 +10,11 @@ import org.openqa.selenium.support.How;
  * @author Zoran Dragovic
  */
 public class DashboardPage {
-    @FindBy(how = How.XPATH, using = "/html/body/div/div[4]/div/div[1]/div/div[1]/div[2]/div/button[1]")
-    public WebElement createAGroupButton;
+    private static final String topicMessage = "This is Topic message";
+    private static final String subtopicMessage = "This is Subtopic message";
+    @FindBy(how = How.XPATH, using = "//pre[text()='" + topicMessage + "']/ancestor::span[@class='message-text']")
+    public WebElement mainTopicMessage;
 
-    public void clickCreateGroup() {
-        createAGroupButton.click();
-    }
+    @FindBy(how = How.XPATH, using = "//pre[text()='" + subtopicMessage + "']/ancestor::span[@class='message-text']")
+    public WebElement subTopicMessage;
 }

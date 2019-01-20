@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 import static com.staging9mcollab.helpers.PropertyReader.getProperty;
+import static com.staging9mcollab.helpers.RandomizeHelper.randomizeValue;
 import static com.staging9mcollab.helpers.WaitHelpers.waitUntilElementIsClickable;
 import static com.staging9mcollab.helpers.WaitHelpers.waitUntilElementIsVisible;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FirstTest extends BaseTest {
     LoginPage loginPage;
-    DashboardPage dashboardPage;
+    NavigationPage navigationPage;
     CreateGroupPage createGroupPage;
     GroupViewPage groupViewPage;
     TopicPage topicPage;
@@ -28,23 +29,23 @@ public class FirstTest extends BaseTest {
     @BeforeEach
     public void initializePageObjects() {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
-        dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
+        navigationPage = PageFactory.initElements(driver, NavigationPage.class);
         createGroupPage = PageFactory.initElements(driver, CreateGroupPage.class);
         groupViewPage = PageFactory.initElements(driver, GroupViewPage.class);
         topicPage = PageFactory.initElements(driver, TopicPage.class);
     }
 
     @Test
-    public void login() throws IOException {
+    public void firstTest() throws IOException {
         waitUntilElementIsVisible(driver, By.id("kc-login"), 10);
-        loginPage.login(getProperty("username"), getProperty("password"));
+        loginPage.login(getProperty("username1"), getProperty("password"));
 
-        waitUntilElementIsClickable(driver, dashboardPage.createAGroupButton, 10);
+        waitUntilElementIsClickable(driver, navigationPage.createAGroupButton, 10);
         assertEquals("9mCollab", driver.getTitle());
-        dashboardPage.clickCreateGroup();
+        navigationPage.clickCreateGroup();
 
         waitUntilElementIsVisible(driver, createButton, 10);
-        createGroupPage.createGroup(getProperty("mainTopic"), getProperty("description"));
+        createGroupPage.createGroup(randomizeValue(getProperty("mainTopic")), getProperty("description"));
 
         waitUntilElementIsClickable(driver, groupViewPage.openButton, 10);
         groupViewPage.clickOpen();

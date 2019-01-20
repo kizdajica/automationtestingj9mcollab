@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class TopicPage {
-    private static final String topicName = "654Group456";
+    private static final String topicName = "654Group789";
     private static final String subtopicName = "Subtopic";
 
     @FindBy(how = How.XPATH, using = "//div[@id='topics']/div/div/div/div[2]/div/button")

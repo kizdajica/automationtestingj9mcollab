@@ -55,7 +55,7 @@ public class FirstTest extends BaseTest {
 
         waitUntilElementIsVisible(driver, iframe, 10);
         switchToIframe(iframe);
-        topicPage.enterConclusionName(getProperty("conclusionName"));
+        topicPage.enterConclusionName(randomizeValue(getProperty("conclusionName")));
         exitIframe();
         topicPage.selectVotingType();
         waitUntilElementIsClickable(driver, topicPage.proposeButton, 10);

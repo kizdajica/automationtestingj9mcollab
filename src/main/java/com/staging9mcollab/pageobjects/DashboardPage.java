@@ -10,8 +10,8 @@ import org.openqa.selenium.support.How;
  * @author Zoran Dragovic
  */
 public class DashboardPage {
-    private static final String topicMessage = "This is Topic message";
-    private static final String subtopicMessage = "This is Subtopic message";
+    private static final String topicMessage = "This is a test Topic message";
+    private static final String subtopicMessage = "This is a test Subtopic message";
     @FindBy(how = How.XPATH, using = "//pre[text()='" + topicMessage + "']/ancestor::span[@class='message-text']")
     public WebElement mainTopicMessage;
 

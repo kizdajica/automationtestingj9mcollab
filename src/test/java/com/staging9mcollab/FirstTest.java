@@ -15,7 +15,6 @@ import static com.staging9mcollab.helpers.WaitHelpers.waitUntilElementIsVisible;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
 public class FirstTest extends BaseTest {
     LoginPage loginPage;
     DashboardPage dashboardPage;

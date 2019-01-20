@@ -6,26 +6,26 @@ import org.openqa.selenium.support.How;
 
 public class CreateGroupPage {
     @FindBy(how = How.CSS, using = "input[name='groupName']")
-    private WebElement setMainTopic;
+    public WebElement setMainTopic;
 
     @FindBy(how = How.CSS, using = "textarea[placeholder='Add description...']")
-    private WebElement addDescription;
+    public WebElement addDescription;
 
     @FindBy(how = How.XPATH, using = "/html/body/div/div[4]/div/div[1]/div[3]/div/div/div/button[1]")
-    private WebElement create;
+    public WebElement createButton;
 
-    private void setMainTopic(String mainTopic) {
+    public void setMainTopic(String mainTopic) {
         setMainTopic.clear();
         setMainTopic.sendKeys(mainTopic);
     }
 
-    private void addDescription(String description) {
+    public void addDescription(String description) {
         addDescription.clear();
         addDescription.sendKeys(description);
     }
 
-    private void clickCreate() {
-        create.click();
+    public void clickCreate() {
+        createButton.click();
     }
 
     public void createGroup(String mainTopic, String description) {

@@ -11,11 +11,9 @@ import org.openqa.selenium.support.How;
  */
 public class DashboardPage {
     @FindBy(how = How.XPATH, using = "/html/body/div/div[4]/div/div[1]/div/div[1]/div[2]/div/button[1]")
-    private WebElement createAGroup;
+    public WebElement createAGroupButton;
 
     public void clickCreateGroup() {
-        createAGroup.click();
+        createAGroupButton.click();
     }
-
-
 }

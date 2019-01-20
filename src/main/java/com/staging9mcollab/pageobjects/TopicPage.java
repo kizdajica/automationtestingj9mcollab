@@ -40,7 +40,6 @@ public class TopicPage {
         viewConclusionButton.click();
     }
 
-
     public void clickEditGroup() {
         editGroupButton.click();
     }
@@ -61,7 +60,6 @@ public class TopicPage {
     public void selectConsensus() {
         consensus.click();
     }
-
 
     public void clickPropose() {
         proposeButton.click();

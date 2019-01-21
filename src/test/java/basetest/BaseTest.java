@@ -14,7 +14,7 @@ import java.io.IOException;
 import static com.staging9mcollab.helpers.PropertyReader.getProperty;
 
 /**
- * This is the Base Test class that manipulates with the driver
+ * This is the Base Test class that manipulates with the driver and contains common methods
  *
  * @author Zoran Dragovic
  */
@@ -25,7 +25,11 @@ public class BaseTest {
     protected ExtentReports extent;
 
     /**
-     * This method initializes the driver and navigates to AUT
+     * <p>
+     * This method initializes the driver and navigates to AUT.
+     * It also performs setup for report creation.
+     * This method is run once before all tests in test class
+     * </p>
      */
     @BeforeAll
     public void setUp() throws IOException {
@@ -41,7 +45,10 @@ public class BaseTest {
     }
 
     /**
-     * This method closes the driver
+     * <p>
+     * This method closes the driver and creates the report.
+     * This method is run after all tests in test class
+     * </p>
      */
     @AfterAll
     public void tearDown() {
@@ -49,10 +56,22 @@ public class BaseTest {
         driver.quit();
     }
 
+    /**
+     * <p>
+     * This method switches to iframe content
+     * </p>
+     *
+     * @param iframe iframe locator in By format
+     */
     protected void switchToIframe(By iframe) {
         driver.switchTo().frame(driver.findElement(iframe));
     }
 
+    /**
+     * <p>
+     * This method exits from iframe to default content
+     * </p>
+     */
     protected void exitIframe() {
         driver.switchTo().defaultContent();
     }

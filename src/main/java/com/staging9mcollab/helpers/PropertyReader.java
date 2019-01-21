@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * This is a helper class that gives us access to properties
+ * Helper class that gives us access to properties
  *
  * @author Zoran Dragovic
  */
@@ -15,7 +15,11 @@ public class PropertyReader {
     static private Properties value;
 
     /**
+     * <p>
      * This method returns the value of selected property
+     * </p>
+     * @param key parameter for which the value will be returned
+     * @return value of the parameter in String format
      */
     public static String getProperty(String key) throws IOException {
         if (value == null) {

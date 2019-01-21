@@ -5,13 +5,21 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 /**
- * This class models the DashboardPage Page and its objects
+ * Page object class for Dashboard page
  *
  * @author Zoran Dragovic
  */
 public class DashboardPage {
-    private static final String topicMessage = "This is a test Topic message";
-    private static final String subtopicMessage = "This is a test Subtopic message";
+    /**
+     * The message sent to main topic members
+     */
+    private static final String topicMessage = "This is a main topic message";
+    /**
+     * The message sent to subtopic members
+     */
+    private static final String subtopicMessage = "This is a subtopic message";
+
+    //Dashboard page object elements
     @FindBy(how = How.XPATH, using = "//pre[text()='" + topicMessage + "']/ancestor::span[@class='message-text']")
     public WebElement mainTopicMessage;
 

@@ -13,7 +13,13 @@ import static com.staging9mcollab.helpers.PropertyReader.getProperty;
 import static com.staging9mcollab.helpers.WaitHelpers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Class that contains second test
+ *
+ * @author Zoran Dragovic
+ */
 public class SecondTest extends BaseTest {
+    //Declaration of page objects
     LoginPage loginPage;
     NavigationPage navigationPage;
     MyGroupsPage myGroupsPage;
@@ -22,6 +28,12 @@ public class SecondTest extends BaseTest {
     CreateTopicPage createTopicPage;
     DashboardPage dashboardPage;
 
+    /**
+     * <p>
+     * This method initializes page objects.
+     * The method is run before each test in SecondTest class
+     * </p>
+     */
     @BeforeEach
     public void initializePageObjects() {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -33,24 +45,33 @@ public class SecondTest extends BaseTest {
         dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
     }
 
+    /**
+     * <p>
+     * This is the second test
+     * </p>
+     */
     @Test
     public void secondTest() throws IOException {
+        //3. Login into application
         waitUntilElementIsVisible(driver, By.id("kc-login"), 10);
         loginPage.login(getProperty("username1"), getProperty("password"));
 
-        waitUntilElementIsClickable(driver, navigationPage.createAGroupButton, 1);
+        //4. Go to main topic of the created group
+        waitUntilElementIsClickable(driver, navigationPage.createGroupButton, 1);
         assertEquals("9mCollab", driver.getTitle());
         navigationPage.clickMyGroups();
 
         waitUntilElementIsClickable(driver, myGroupsPage.existingTopicName, 10);
         myGroupsPage.clickExistingTopic();
 
+        //5. Create a subtopic
         waitAditional(1);
         topicPage.clickCreateSubtopic();
 
-        waitUntilElementIsClickable(driver, createTopicPage.subtopicName, 10);
+        waitUntilElementIsClickable(driver, createTopicPage.subtopicNameInput, 10);
         createTopicPage.createSubtopic(getProperty("subtopicName"));
 
+        //6. Send a message to both topics as user1
         waitAditional(2);
         topicPage.selectMainTopic();
         waitAditional(1);
@@ -59,6 +80,7 @@ public class SecondTest extends BaseTest {
         waitAditional(1);
         topicPage.sendMessage(getProperty("subtopicMessage"));
 
+        //7. Check messages as user2
         navigationPage.logOut();
 
         waitUntilElementIsVisible(driver, By.id("kc-login"), 10);

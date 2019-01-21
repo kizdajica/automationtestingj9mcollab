@@ -4,10 +4,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+/**
+ * Page object class for Topic page
+ *
+ * @author Zoran Dragovic
+ */
 public class TopicPage {
+    /**
+     * The name of the created group
+     */
     private static final String topicName = "654Group789";
+    /**
+     * The name of the subtopic
+     */
     private static final String subtopicName = "Subtopic";
 
+    //Topic page object elements
     @FindBy(how = How.XPATH, using = "//div[@id='topics']/div/div/div/div[2]/div/button")
     public WebElement createSubtopicButton;
 
@@ -21,7 +33,7 @@ public class TopicPage {
     public WebElement editGroupButton;
 
     @FindBy(how = How.ID, using = "tinymce")
-    public WebElement textArea;
+    public WebElement conclusionTextArea;
 
     @FindBy(how = How.XPATH, using = "//div[3]/md-input-container/md-select")
     public WebElement votingTypeUnselected;
@@ -58,25 +70,13 @@ public class TopicPage {
         createConclusionButton.click();
     }
 
-    public void clickViewConclusion() {
-        viewConclusionButton.click();
-    }
-
-    public void clickEditGroup() {
-        editGroupButton.click();
-    }
-
     public void enterConclusionName(String conclusionName) {
-        textArea.clear();
-        textArea.sendKeys(conclusionName);
+        conclusionTextArea.clear();
+        conclusionTextArea.sendKeys(conclusionName);
     }
 
     public void clickVotingType() {
         votingTypeUnselected.click();
-    }
-
-    public void selectMajority() {
-        majority.click();
     }
 
     public void selectConsensus() {
@@ -104,6 +104,13 @@ public class TopicPage {
         sendMessageButton.click();
     }
 
+    /**
+     * <p>
+     * This method sends the message
+     * </p>
+     *
+     * @param message message that will be sent
+     */
     public void sendMessage(String message) {
         enterMessageText(message);
         clickSendMessage();

@@ -10,17 +10,8 @@ import org.openqa.selenium.support.How;
  * @author Zoran Dragovic
  */
 public class TopicPage {
-    /**
-     * The name of the created group
-     */
-    private static final String topicName = "654Group789";
-    /**
-     * The name of the subtopic
-     */
-    private static final String subtopicName = "Subtopic";
-
     //Topic page object elements
-    @FindBy(how = How.XPATH, using = "//div[@id='topics']/div/div/div/div[2]/div/button")
+    @FindBy(how = How.XPATH, using = "//button[@tooltip='Create a new topic']")
     public WebElement createSubtopicButton;
 
     @FindBy(how = How.XPATH, using = "//span[text()='Create Conclusion']/ancestor::button[@type='button']")
@@ -50,17 +41,11 @@ public class TopicPage {
     @FindBy(how = How.CSS, using = ".ladda-button")
     public WebElement proposeButton;
 
-    @FindBy(how = How.XPATH, using = "//div[text()=' " + topicName + "']/ancestor::div[@class='center']")
-    public WebElement mainTopic;
-
     @FindBy(how = How.XPATH, using = "//textarea[@placeholder='Type a message...']")
     public WebElement messageTextArea;
 
     @FindBy(how = How.XPATH, using = "//button[@ng-click='vm.sendMessage()']")
     public WebElement sendMessageButton;
-
-    @FindBy(how = How.XPATH, using = "//div[text()=' " + subtopicName + "']/ancestor::div[@class='center']")
-    public WebElement subtopic;
 
     public void clickCreateSubtopic() {
         createSubtopicButton.click();
@@ -92,10 +77,6 @@ public class TopicPage {
         selectConsensus();
     }
 
-    public void selectMainTopic() {
-        mainTopic.click();
-    }
-
     public void enterMessageText(String message) {
         messageTextArea.sendKeys(message);
     }
@@ -114,9 +95,5 @@ public class TopicPage {
     public void sendMessage(String message) {
         enterMessageText(message);
         clickSendMessage();
-    }
-
-    public void selectSubtopic() {
-        subtopic.click();
     }
 }

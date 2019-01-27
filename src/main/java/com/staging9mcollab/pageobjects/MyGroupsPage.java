@@ -10,21 +10,7 @@ import org.openqa.selenium.support.How;
  * @author Zoran Dragovic
  */
 public class MyGroupsPage {
-    /**
-     * The name of the created group
-     */
-    private static final String topicName = "654Group789";
-
     //My Groups page object elements
-    @FindBy(how = How.XPATH, using = "//span[text()='" + topicName + "']/ancestor::td[@class='name']")
-    public WebElement existingTopicName;
-
-    /**
-     * <p>
-     * This method opens the existing group
-     * </p>
-     */
-    public void clickExistingTopic() {
-        existingTopicName.click();
-    }
+    @FindBy(how = How.XPATH, using = "//span[text()='Edit']")
+    public WebElement editButton;
 }

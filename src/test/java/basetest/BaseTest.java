@@ -2,6 +2,7 @@ package basetest;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
@@ -21,8 +22,7 @@ import static com.staging9mcollab.helpers.PropertyReader.getProperty;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BaseTest {
     protected WebDriver driver;
-    protected ExtentHtmlReporter html;
-    protected ExtentReports extent;
+    private ExtentReports extent;
 
     /**
      * <p>
@@ -33,10 +33,15 @@ public class BaseTest {
      */
     @BeforeAll
     public void setUp() throws IOException {
-        html = new ExtentHtmlReporter(getProperty("extentReportPath"));
+        ExtentHtmlReporter html = new ExtentHtmlReporter("src/test/output/extentReport/" + getClass().getSimpleName() + "Report.html");
+        html.config().setReportName(getClass().getSimpleName() + " Selenium Automation Report");
+        html.config().setTheme(Theme.DARK);
+
         extent = new ExtentReports();
         extent.attachReporter(html);
-        extent.createTest(getClass().getName());
+        extent.setSystemInfo("Test creator", "Zoran Dragovic");
+        extent.setSystemInfo("Browser", "Chrome");
+        extent.createTest(getClass().getSimpleName());
 
         System.setProperty(getProperty("key"), getProperty("value"));
         driver = new ChromeDriver();
